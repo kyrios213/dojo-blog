@@ -1,10 +1,29 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <router-view />
+  <br />
+
+  <div class="redirect-buttons">
+    <button @click="back">Go Back</button>
+    <button @click="redirect">Home</button>
+    <button @click="forward">Go forward</button>
   </div>
-  <router-view/>
 </template>
+
+<script>
+export default {
+  methods: {
+    redirect() {
+      this.$router.push({ name: "Home2" });
+    },
+    back() {
+      this.$router.go(-1);
+    },
+    forward() {
+      this.$router.go(+1);
+    },
+  },
+};
+</script>
 
 <style>
 #app {
@@ -15,16 +34,20 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.redirect-buttons {
+  margin-top: 20px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.redirect-buttons button {
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.redirect-buttons button:hover {
+  background: gray;
+  cursor: pointer;
+  color: white;
 }
 </style>
